@@ -173,3 +173,16 @@ must be set to 'text/babel'
 ```html
 <script type="text/babel" src="./index.js"></script>
 ```
+
+
+## React Project
+
+An npm project allows us to transpile before scripts get to the browser
+
+Remove babel script from index.html
+Change MIME type of the application script to 'text/javascript'
+and set its file name to 'bundle.js'
+
+```html
+<script type="text/javascript" src="./bundle.js"></script>
+```
