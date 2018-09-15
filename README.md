@@ -256,3 +256,11 @@ npm install babel-preset-stage-0 --save-dev
 ```
 
 TODO: Explore babel-preset-env (appears to now be the recommended approach)
+
+#### 'manually' running babel
+
+```console
+babel ./src/app.js --out-file ./public/scripts/bundle.js
+```
+
+This will create the ```bundle.js``` file
