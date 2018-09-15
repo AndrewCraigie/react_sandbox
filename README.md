@@ -343,3 +343,38 @@ const config = {
 
 module.exports = config;
 ```
+#### Install webpack
+
+```console
+npm install webpack webpack-cli --save-dev
+```
+
+#### Install babel loader
+
+```console
+npm install babel-loader --save-dev
+```
+#### Install express
+
+We will use express as a server for the project
+Note this is not installed as a dev dependency
+
+```console
+npm install express
+```
+
+#### Install nodemon
+
+We will use nodemon to create a development server with live reload
+
+```console
+npm install nodemon --save-dev
+```
+
+#### Install babel core
+
+This is a required peer dependency for babel-loader
+
+```console
+npm install @babel/core --save-dev
+```

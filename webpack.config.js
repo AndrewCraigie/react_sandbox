@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 const config = {
   entry: `${__dirname}/src/app.js`,
   output: {
@@ -5,6 +7,9 @@ const config = {
     filename: 'bundle.js'
   },
   mode: 'development',
+  devServer: {
+    
+  },
   module: {
     loaders: [
       {
