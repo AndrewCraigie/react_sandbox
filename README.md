@@ -184,11 +184,26 @@ Change MIME type of the application script to 'text/javascript'
 and set its file name to 'bundle.js'
 
 ```html
-<script type="text/javascript" src="./bundle.js"></script>
+<script type="text/javascript" src="./scripts/bundle.js"></script>
 ```
 
 #### Initialize npm project
 
 ```console
 npm init
+```
+
+#### Create directory structure
+
+```
+.
+├── README.md
+├── package.json
+├── .gitignore
+├── src
+|   ├── app.js
+├── public
+|   ├── index.html
+|   ├── scripts
+|         └── bundle.js
 ```
