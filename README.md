@@ -213,3 +213,36 @@ npm init
 ```
 npm install babel-cli --save-dev
 ```
+
+#### Add .babelrc file
+
+Add a file at the project root called '.babelrc'
+
+```
+.
+├── README.md
+├── package.json
+├── .gitignore
+├── .babelrc
+├── src
+|   ├── app.js
+├── public
+|   ├── index.html
+|   ├── scripts
+|         └── bundle.js
+```
+Add the following to the .bablerc file
+
+```
+{
+  'presets': ['latest', 'react', 'stage-0']
+}
+```
+
+Ths will set up a 'permissive' babel configuration
+
+#### Install babel using the presets
+
+```console
+npm install babel-preset-react
+```
