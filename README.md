@@ -318,13 +318,27 @@ Add ```webpack.config.js``` to root of project
 Set its contents to:
 
 ```javascript
+const webpack = require('webpack');
+
 const config = {
   entry: `${__dirname}/src/app.js`,
   output: {
     path: `${__dirname}/public/js`,
     filename: 'bundle.js'
   },
-  mode: 'development'
+  mode: 'development',
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: ['babel-loader'],
+        query: {
+          presets ['latest', 'stage-0', 'react']
+        }
+      }
+    ]
+  }
 };
 
 module.exports = config;
