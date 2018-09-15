@@ -186,3 +186,9 @@ and set its file name to 'bundle.js'
 ```html
 <script type="text/javascript" src="./bundle.js"></script>
 ```
+
+#### Initialize npm project
+
+```console
+npm init
+```
