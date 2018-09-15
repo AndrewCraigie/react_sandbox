@@ -264,3 +264,49 @@ babel ./src/app.js --out-file ./public/scripts/bundle.js
 ```
 
 This will create the ```bundle.js``` file
+
+## Transpiled code
+
+The app.js code for the component:
+
+```javascript
+const { createElement } = React;
+const { render } = ReactDOM;
+
+render(
+  <h1 id='title'
+    className = 'header'
+    style = {{
+      backgroundColor: 'tomato',
+      color: 'white',
+      fontFamily: 'verdana'
+    }}>
+    Hello World
+    </h1>,
+  document.getElementById('react-container')
+);
+```
+
+...is transpiled to:
+
+```javascirpt
+'use strict';
+
+var _React = React,
+    createElement = _React.createElement;
+var _ReactDOM = ReactDOM,
+    render = _ReactDOM.render;
+
+
+render(React.createElement(
+  'h1',
+  { id: 'title',
+    className: 'header',
+    style: {
+      backgroundColor: 'tomato',
+      color: 'white',
+      fontFamily: 'verdana'
+    } },
+  'Hello World'
+), document.getElementById('react-container'));
+```
