@@ -244,5 +244,11 @@ Ths will set up a 'permissive' babel configuration
 #### Install babel using the presets
 
 ```console
-npm install babel-preset-react
+npm install babel-preset-react --save-dev
 ```
+
+```console
+npm install babel-preset-latest --save-dev
+```
+
+TODO: Explore babel-preset-env (appears to now be the recommended approach)
