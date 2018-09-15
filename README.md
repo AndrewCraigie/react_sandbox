@@ -164,3 +164,12 @@ in-browser transpiling. This is not recommended for production code
 ```html
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
+
+#### MIME type of script link
+
+For babel to work the MIME type of the script link containing JSX
+must be set to 'text/babel'
+
+```html
+<script type="text/babel" src="./index.js"></script>
+```
