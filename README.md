@@ -310,3 +310,22 @@ render(React.createElement(
   'Hello World'
 ), document.getElementById('react-container'));
 ```
+
+## Automating transpiling and bundling with webpack
+
+Add ```webpack.config.js``` to root of project
+
+Set its contents to:
+
+```javascript
+const config = {
+  entry: `${__dirname}/src/app.js`,
+  output: {
+    path: `${__dirname}/public/js`,
+    filename: 'bundle.js'
+  },
+  mode: 'development'
+};
+
+module.exports = config;
+```
