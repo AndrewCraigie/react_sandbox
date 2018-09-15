@@ -19,3 +19,22 @@ ReactDOM.render(
   document.getElementById('react-container')
 );
 ```
+
+### Create the element and pass it to the ReactDOM.render function
+
+
+```javascript
+const title = React.createElement(
+  'h1',
+  {
+    id: 'title',
+    className: 'header'
+  },
+  'Hello World'
+);
+
+ReactDOM.render(
+  title,
+  document.getElementById('react-container')
+);
+```
