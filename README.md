@@ -38,3 +38,24 @@ ReactDOM.render(
   document.getElementById('react-container')
 );
 ```
+
+### Using destructuring to clean up the code
+
+```javascript
+const { createElement } = React;
+const { render } = ReactDOM;
+
+const title = createElement(
+  'h1',
+  {
+    id: 'title',
+    className: 'header'
+  },
+  'Hello World'
+);
+
+render(
+  title,
+  document.getElementById('react-container')
+);
+```
