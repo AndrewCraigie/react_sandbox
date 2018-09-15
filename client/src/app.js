@@ -1,3 +1,4 @@
+const phrases = require('./lib/phrases');
 const { createElement } = React;
 const { render } = ReactDOM;
 
@@ -9,7 +10,7 @@ render(
       color: 'white',
       fontFamily: 'verdana'
     }}>
-    Hello Universe
+    {phrases.hello}
     </h1>,
   document.getElementById('react-container')
 );
