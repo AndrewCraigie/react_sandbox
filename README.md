@@ -251,4 +251,8 @@ npm install babel-preset-react --save-dev
 npm install babel-preset-latest --save-dev
 ```
 
+```console
+npm install babel-preset-stage-0 --save-dev
+```
+
 TODO: Explore babel-preset-env (appears to now be the recommended approach)
