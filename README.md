@@ -207,3 +207,9 @@ npm init
 |   ├── scripts
 |         └── bundle.js
 ```
+
+#### Install babel-cli
+
+```
+npm install babel-cli --save-dev
+```
