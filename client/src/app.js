@@ -9,7 +9,7 @@ render(
       color: 'white',
       fontFamily: 'verdana'
     }}>
-    Hello World
+    Hello Universe
     </h1>,
   document.getElementById('react-container')
 );

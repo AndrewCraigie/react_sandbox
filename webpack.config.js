@@ -1,27 +1,21 @@
-const webpack = require('webpack');
 
-const config = {
-  entry: `${__dirname}/src/app.js`,
+module.exports = {
+  entry: `${__dirname}/client/src/app.js`,
   output: {
-    path: `${__dirname}/public/js`,
+    path: `${__dirname}/client/public/js`,
     filename: 'bundle.js'
   },
-  mode: 'development',
-  devServer: {
-    
-  },
+  mode: "development",
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        loader: ['babel-loader'],
-        query: {
-          presets ['latest', 'stage-0', 'react']
-        }
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
   }
 };
-
-module.exports = config;

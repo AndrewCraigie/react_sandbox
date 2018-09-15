@@ -184,7 +184,7 @@ Change MIME type of the application script to 'text/javascript'
 and set its file name to 'bundle.js'
 
 ```html
-<script type="text/javascript" src="./scripts/bundle.js"></script>
+<script type="text/javascript" src="./js/bundle.js"></script>
 ```
 
 #### Initialize npm project
@@ -197,119 +197,40 @@ npm init
 
 ```
 .
-├── README.md
-├── package.json
-├── .gitignore
-├── src
-|   ├── app.js
-├── public
-|   ├── index.html
-|   ├── scripts
-|         └── bundle.js
-```
-
-#### Install babel-cli
-
-```
-npm install babel-cli --save-dev
-```
-
-#### Add .babelrc file
-
-Add a file at the project root called '.babelrc'
-
-```
-.
-├── README.md
-├── package.json
-├── .gitignore
+├── client
+|   ├── public
+|         └── js
+|              └── bundle.js
+|         └── index.html
+├── server
+|     └── server.js
 ├── .babelrc
-├── src
-|   ├── app.js
-├── public
-|   ├── index.html
-|   ├── scripts
-|         └── bundle.js
+├── .gitignore
+├── package.json
+├── README.md
+├── webpack.config.js
 ```
+
 Add the following to the .bablerc file
 
 ```
 {
-  'presets': ['latest', 'react', 'stage-0']
+  "presets": ["@babel/preset-env","@babel/preset-react"]
 }
 ```
 
 Ths will set up a 'permissive' babel configuration
 
-#### Install babel using the presets
+#### Install babel
 
 ```console
-npm install babel-preset-react --save-dev
-```
-
-```console
-npm install babel-preset-latest --save-dev
+npm install @babel/core @babel/preset-env @babel/preset-react --save-dev
 ```
 
 ```console
-npm install babel-preset-stage-0 --save-dev
+npm install babel-loader --save-dev
 ```
 
-TODO: Explore babel-preset-env (appears to now be the recommended approach)
-
-#### 'manually' running babel
-
-```console
-babel ./src/app.js --out-file ./public/scripts/bundle.js
-```
-
-This will create the ```bundle.js``` file
-
-## Transpiled code
-
-The app.js code for the component:
-
-```javascript
-const { createElement } = React;
-const { render } = ReactDOM;
-
-render(
-  <h1 id='title'
-    className = 'header'
-    style = {{
-      backgroundColor: 'tomato',
-      color: 'white',
-      fontFamily: 'verdana'
-    }}>
-    Hello World
-    </h1>,
-  document.getElementById('react-container')
-);
-```
-
-...is transpiled to:
-
-```javascirpt
-'use strict';
-
-var _React = React,
-    createElement = _React.createElement;
-var _ReactDOM = ReactDOM,
-    render = _ReactDOM.render;
-
-
-render(React.createElement(
-  'h1',
-  { id: 'title',
-    className: 'header',
-    style: {
-      backgroundColor: 'tomato',
-      color: 'white',
-      fontFamily: 'verdana'
-    } },
-  'Hello World'
-), document.getElementById('react-container'));
-```
 
 ## Automating transpiling and bundling with webpack
 
@@ -318,42 +239,36 @@ Add ```webpack.config.js``` to root of project
 Set its contents to:
 
 ```javascript
-const webpack = require('webpack');
-
-const config = {
-  entry: `${__dirname}/src/app.js`,
+module.exports = {
+  entry: `${__dirname}/client/src/app.js`,
   output: {
-    path: `${__dirname}/public/js`,
+    path: `${__dirname}/client/public/js`,
     filename: 'bundle.js'
   },
-  mode: 'development',
+  mode: "development",
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        loader: ['babel-loader'],
-        query: {
-          presets ['latest', 'stage-0', 'react']
-        }
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
   }
 };
 
 module.exports = config;
 ```
+
 #### Install webpack
 
 ```console
 npm install webpack webpack-cli --save-dev
 ```
 
-#### Install babel loader
-
-```console
-npm install babel-loader --save-dev
-```
 #### Install express
 
 We will use express as a server for the project
@@ -371,10 +286,46 @@ We will use nodemon to create a development server with live reload
 npm install nodemon --save-dev
 ```
 
-#### Install babel core
+#### server/server.js
 
-This is a required peer dependency for babel-loader
+```javascript
+const express = require('express');
+const app = express();
+const path = require('path');
+const parser = require('body-parser');
+
+const publicPath = path.join(__dirname, '../client/public');
+app.use(express.static(publicPath));
+
+app.use(parser.json());
+
+app.listen(3000, function () {
+  console.log(`Listening on port ${ this.address().port }`);
+});
+```
+
+#### Add scripts to package.json
+
+```javascript
+  "build": "webpack -w",
+  "start": "node server/server.js",
+  "server:dev": "nodemon server/server.js",
+```
+
+### Install nodemon
 
 ```console
-npm install @babel/core --save-dev
+  npm install nodemon --save-dev
+```
+
+#### Running
+
+```console
+  npm run build
+```
+
+In another terminal window:
+
+```console
+  npm run server:dev
 ```
